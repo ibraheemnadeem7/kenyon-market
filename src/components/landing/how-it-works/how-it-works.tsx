@@ -7,7 +7,10 @@ import { StepPills } from "./step-pills";
 import { steps } from "./steps";
 
 const NAV_HEIGHT = 56; // h-14 navbar
-const VH_PER_STEP = 70; // scroll distance per step, in % of screen height
+// How much scrolling each step gets, in % of screen height.
+// 250 = about two and a half screens (2 to 3 seconds of steady scrolling).
+// Raise it to make each step last longer, lower it to make them change faster.
+const VH_PER_STEP = 250;
 
 /**
  * "How it works" as a scroll story.
@@ -26,7 +29,7 @@ export function HowItWorks() {
 
 function PinnedSteps() {
   const outerRef = useRef<HTMLDivElement>(null);
-  const [progress, setProgress] = useState(0); // 0..3
+  const [progress, setProgress] = useState(0); // 0..4
 
   useEffect(() => {
     let frame = 0;
@@ -38,8 +41,9 @@ function PinnedSteps() {
       const scrollable = el.offsetHeight - (window.innerHeight - NAV_HEIGHT);
       if (scrollable <= 0) return;
       const p = Math.min(1, Math.max(0, (NAV_HEIGHT - rect.top) / scrollable));
-      // Hold on step 01 for the first eighth and on step 04 for the last eighth.
-      setProgress(Math.min(3, Math.max(0, p * 4 - 0.5)));
+      // Each step gets an equal quarter of the scroll. The line into the next
+      // pill fills while you are on the current step.
+      setProgress(Math.min(4, Math.max(0, p * 4)));
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -60,7 +64,7 @@ function PinnedSteps() {
     const el = outerRef.current;
     if (!el) return;
     const scrollable = el.offsetHeight - (window.innerHeight - NAV_HEIGHT);
-    const p = (i + 0.5 + 0.05) / 4;
+    const p = (i + 0.02) / 4;
     const top = window.scrollY + el.getBoundingClientRect().top - NAV_HEIGHT + p * scrollable;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
@@ -70,7 +74,7 @@ function PinnedSteps() {
     <div
       ref={outerRef}
       className="relative hidden pin-steps:block"
-      style={{ height: `calc(100vh + ${VH_PER_STEP * 3}vh)` }}
+      style={{ height: `calc(100vh + ${VH_PER_STEP * 4}vh)` }}
     >
       <div
         className="sticky flex flex-col justify-center"

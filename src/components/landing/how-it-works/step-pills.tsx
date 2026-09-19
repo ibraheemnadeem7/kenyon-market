@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { cn } from "@/lib/utils";
 import { steps } from "./steps";
 
-// progress runs from 0 (at step 01) to 3 (at step 04).
+// progress runs from 0 to 4. While on step i (progress i to i+1), the line into pill i+1 fills.
 export function StepPills({
   progress,
   active,
