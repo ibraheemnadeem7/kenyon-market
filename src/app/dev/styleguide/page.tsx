@@ -55,7 +55,7 @@ export default function StyleguidePage() {
         Style guide
       </h1>
       <p className="mt-3 max-w-xl text-[17px] leading-relaxed text-muted-foreground">
-        Every token and component from docs/theme-spec.md in one place. If
+        Tokens and components of the classic theme (docs/theme-spec-classic.md). If
         something here looks off, fix the token, not the page.
       </p>
 

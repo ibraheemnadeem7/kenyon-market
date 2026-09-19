@@ -1,243 +1,174 @@
-# Theme Spec: Kenyon Marketplace
+# Theme Spec: Kenyon Market (purple)
 
-**Reference:** the look of tsenta.com, from the screen recording in this folder. Use the style only. Do not copy their name, logo or text.
-**How to use this file:** paste it into your AI coding tool at the start of a UI task and say "follow Theme Spec.md". Everything below works as Tailwind + shadcn/ui instructions.
+**Status:** the design for the whole app (decided 2026-09-19). The earlier black and off-white design is retired and lives in `theme-spec-classic.md` and at `/classic`.
+**Reference:** the layout of nas.com (screen recording shared in chat on Sep 19, 12:52; too large to keep in the Theme folder), recolored to purple and white. Style only: none of its name, logo, wording or photos.
+**Live pages:** `/` (sell-or-buy home), `/sellers`, `/buyers`.
+**Code:** reusable pieces in `src/components/landing-purple/`, tokens at the bottom of `src/app/globals.css`.
+**How to use this file:** paste it into your AI coding tool with a UI task and say "follow docs/theme-spec.md".
 
 ---
 
-## 1. The feel in one paragraph
+## 1. The feel
 
-Clean, calm and confident. The page is an off-white canvas with black text and black pill buttons. Most of the page is plain. Color shows up in only one place: the soft pastel item cards, which make the feed look friendly and easy to scan. Headlines are big and regular weight, not bold. Everything is rounded. Borders are thin and light, and shadows are barely there. It should look like a tool that runs itself, not like a busy classifieds site.
+Soft, friendly and bright. White pages with a faint lavender glow at the top and bottom. Big bold geometric headlines with one italic serif phrase for warmth. A floating white pill navbar. Every main action is a purple pill. Cards are big, very rounded and tinted lilac. Things you can click come alive: they lift, and the big panels flip from light to dark purple.
 
-**Three rules that define the style:**
+**Five rules:**
 
-1. Black and off-white for everything except the item cards.
-2. Buttons are always pills (fully rounded). The main action is black, the secondary action is white with a thin border.
-3. Pastel colors belong to item cards only. Never use pastels for buttons, text or page backgrounds.
+1. White and lavender everywhere. Purple (`plum`) is only for actions, icons and one accent word.
+2. Headlines are bold Poppins with **one** italic serif phrase ("Sell your stuff from *a single photo*"), or a dark half plus a faded gray half ("Prices drop **without you lifting a finger.**").
+3. Very round shapes: pills for buttons, inputs and tags; 24 to 28px corners for cards; 36 to 40px for big panels.
+4. Soft, purple-tinted shadows. Never hard gray shadows.
+5. Light at rest, dark on interaction: big clickable panels are lilac until hovered, focused or tapped, then turn deep purple with white text.
 
 ---
 
 ## 2. Colors
 
-### Base
-
 | Token | Hex | Use |
 |---|---|---|
-| `background` | `#FDFBFC` | Page background on marketing pages (very slightly warm white) |
-| `surface` | `#FFFFFF` | App pages, cards, panels, the navbar in the app |
-| `surface-muted` | `#F5F1EE` | Inset areas inside a card, search bars, "exclude" fields |
-| `border` | `#E8E4E1` | All borders and dividers, 1px |
-| `foreground` | `#0A0A0A` | Headlines, primary buttons, main text |
-| `muted-foreground` | `#56545A` | Paragraphs, subtitles |
-| `subtle-foreground` | `#8A8790` | Timestamps, labels, placeholder text |
-| `inverse` | `#000000` | Dark feature panels (black cards with white text) |
-| `inverse-muted` | `#131313` | Boxes inside a dark panel |
+| `plum` | `#6D28D9` | Primary buttons, active states, "Market" in the logo |
+| `plum-hover` | `#5B21B6` | Button hover |
+| `plum-soft` | `#8B5CF6` | Icons, sparkle icons, small labels |
+| `lilac` | `#F4EEFF` | Card and panel backgrounds |
+| `lilac-strong` | `#E7DCFF` | Thin rings around lilac panels, dashed borders |
+| `mist` | `#FAF8FF` | Rows inside white cards |
+| `ink` | `#16121F` | Headlines, main text |
+| `ink-muted` | `#6E6780` | Body text |
+| `ink-faint` | `#A29BB3` | Gray half of split headlines, placeholders, struck-out old prices |
+| `tag-purple` | `#DEAEFF` | "Free" tags |
+| Gray pill | `#EFEDF3` | Secondary button (Login) |
+| Icon tile tints | `#EBE3FF`, `#EFE7FF`, `#F3ECFF`, `#F6F0FF` | Photo/icon area of item cards; rotate them so a grid isn't flat |
 
-### Accents (use sparingly)
+**Gradients:**
 
-| Token | Hex | Use |
+| Name | Value | Where |
 |---|---|---|
-| `brand-dark` | `#1B2F26` | Very dark green. Active filter chips, the small credits/badge pill in the navbar, a secondary dark button |
-| `success` | `#117D49` | Green "+" icons, "Sold" and "Ready" status dots |
-| `accent-line` | `#D2574B` | Muted coral red. Only for step indicators (the thin line and outlined pills in a "how it works" row) |
-| `tag-purple` | `#DEAEFF` | Small highlight tags such as "Free" or "New" |
+| Hero glow | `radial-gradient(120% 80% at 50% 0%, #ECE2FF 0%, #F7F2FF 45%, #FFFFFF 80%)` | Top of every landing page |
+| Deep purple | `linear-gradient(160deg, #7C3AED 0%, #6D28D9 45%, #4C1D95 100%)` | Active/hovered door panels |
+| Showcase | `linear-gradient(135deg, #EFE6FF, #F8F4FF, #ECE3FF)` | Big panels that frame a mock screen |
+| Footer | white fading to `#B99AF5` | Behind the white footer card |
 
-### Item card pastels
+**Shadows:**
 
-Rotate these across item cards in the feed. Pick by category so the same category always gets the same color.
-
-| Token | Hex | Suggested category |
-|---|---|---|
-| `card-yellow` | `#FEF4C1` | Kitchen |
-| `card-blue` | `#DFF2FF` | Electronics |
-| `card-purple` | `#E9E3FF` | Decor |
-| `card-green` | `#CFFFE3` | Freebies / free items |
-| `card-peach` | `#FBEAD0` | Furniture |
-| `card-sky` | `#E3F1FB` | Clothing |
-| `card-rose` | `#FDE2E2` | Other |
-
-Dark mode is out of scope for v1. Build light only.
+| Name | Value |
+|---|---|
+| Navbar | `0 8px 30px rgba(40,20,80,0.08)` |
+| Card | `0 20px 40px rgba(40,20,80,0.12)` |
+| Mock window | `0 20px 50px rgba(40,20,80,0.12)` |
+| Hovered door | `0 30px 60px rgba(76,29,149,0.30)` |
 
 ---
 
 ## 3. Typography
 
-- **Font:** Inter (Google Fonts, or `next/font/google`). One font for everything.
-- **Headlines are regular weight (400), not bold.** This is the biggest part of the look. Keep tight letter spacing.
-- Card titles and UI labels are medium weight (500).
-- Small uppercase labels with wide letter spacing mark sections inside panels, like `01 · THE PIPELINE`.
+- **Headlines and UI:** Poppins 400, 500, 600 (`font-display`), self-hosted with `@fontsource/poppins`.
+- **Accent phrase:** Instrument Serif italic (`font-serif`), self-hosted with `@fontsource/instrument-serif`. At most one phrase per headline, set 1.08 to 1.1 times larger than the words around it.
+- **Body:** Inter.
 
-| Style | Size / line height | Weight | Tracking | Example |
-|---|---|---|---|---|
-| Hero | 64px / 1.05 (40px on mobile) | 400 | -0.02em | "Sell it before you leave." |
-| Section title | 44px / 1.1 | 400 | -0.02em | "Four steps. No haggling." |
-| Panel title | 24px / 1.25 | 400 | -0.01em | "Price drops, on its own." |
-| Card title | 20px / 1.3 | 500 | normal | "IKEA desk lamp" |
-| Body | 17px / 1.6 | 400 | normal | Paragraphs, in `muted-foreground` |
-| UI text | 14px / 1.4 | 500 | normal | Buttons, nav links, filters |
-| Caption | 12 to 13px | 400 | normal | "4 hours ago", "Old Kenyon" |
-| Eyebrow | 12px | 600 | 0.08em, uppercase | `02 · FREEBIES` |
+| Style | Size | Weight | Tracking |
+|---|---|---|---|
+| Hero | 64px (40px on phones) | Poppins 600 | -0.03em |
+| Section title | 48px (34px on phones) | Poppins 600 | -0.03em |
+| Panel title | 44px (34px on phones) | Poppins 600 | -0.03em |
+| Card title | 19px | Poppins 600 | normal |
+| Eyebrow | 15px gray plain text, or 18px purple with an icon (✦ Smart pricing) | 400 | normal |
+| Body | 16 to 17px | Inter 400, `ink-muted` | normal |
+| Small print | 12 to 13px | Inter 400 | normal |
 
 ---
 
-## 4. Shape, spacing and depth
+## 4. Interaction
 
-- **Radius:** buttons, chips, badges and tags are fully round (`rounded-full`). Cards and panels are 16px (`rounded-2xl`). Inputs and inner boxes are 12px (`rounded-xl`).
-- **Borders:** 1px `border` color on every card and outlined button. Use borders to separate things, not shadows.
-- **Shadows:** almost none. Cards get a hover shadow only: `shadow-[0_4px_16px_rgba(0,0,0,0.06)]`.
-- **Container:** max width 1200px, centered, 24px side padding (16px on mobile).
-- **Section spacing:** 96 to 128px between marketing sections. 24 to 32px between blocks in the app.
-- **Framed sections:** on the landing page, sections sit inside a box with thin 1px vertical lines on the left and right edges, and a small dot where they meet the horizontal divider. This gives it the "blueprint" feel. It's optional, so skip it if you're short on time.
+- **Door panels (home page):** lilac with a thin `lilac-strong` ring at rest. On hover, keyboard focus or click they lift 4px, the deep purple gradient fades in over 300ms, text turns white (body at 78%), and the purple button turns white with purple text. On click they stay dark about 280ms, then navigate. On touch screens only the tap turns them dark. Cmd/ctrl-click still opens a new tab.
+- **Cards and buttons:** lift 2 to 4px on hover and gain the card shadow. Little cards inside a panel tilt a few degrees more on hover.
+- **Prompt bar:** placeholder text types itself out ("I want to sell my mini fridge", "I'm looking for a desk lamp") with a blinking caret.
+- **Sticky prompt:** a small prompt bar floats at the bottom of landing pages after the hero scrolls away and hides near the footer.
+- **Reduced motion:** no typing, no fades, instant navigation.
 
 ---
 
 ## 5. Components
 
-### Navbar (landing page)
-- Height 56px, background `background`, 1px bottom border that shows once you scroll, sticky.
-- Left: small black logo mark plus the wordmark "Kenyon Market" in 18px medium.
-- Center: plain text links in 15px `foreground` (How it works, Freebies, FAQ).
-- Right: "Log in" as an outlined pill, "Sign up" as a black pill.
+### Built (landing pages)
 
-### Navbar (in the app)
-- White background. Logo on the left, then tabs: Browse, Freebies, Sell, My listings, Saved, Messages.
-- The active tab gets a light gray pill behind it (`surface-muted`). Inactive tabs are plain text.
-- Right side: bell icon with a small red dot for unread notifications, then Settings, then a small `brand-dark` pill with white text for a status like "3 active".
+| Component | Description | File |
+|---|---|---|
+| Logo | Purple rounded square with a white falling staircase, then "Kenyon" in ink and "Market" in plum | `purple-logo.tsx` |
+| Floating navbar | White pill, max 800px, 16px from the top, sticky. Logo, Sell / Buy / Freebies, gray "Login" pill, purple "Get started" pill | `floating-navbar.tsx` |
+| Door panel | The light-to-dark clickable panel (section 4) | `door-panel.tsx`, used by `home-split.tsx` |
+| Prompt bar | White pill: gray icon circle, typing text, purple CTA pill. Takes a config (prefix, ideas, button text, link) | `prompt-bar.tsx` |
+| Sticky prompt | Compact prompt bar with a round arrow button, fixed at the bottom | `sticky-prompt.tsx` |
+| Product fan | Listing cards tilted in 3D around a phone | `product-fan.tsx` |
+| Deal cards | Grid of listing cards with a % off ring in the corner and a struck-out old price | `deal-cards.tsx` |
+| Step cards | 4 lilac cards (number, purple icon, title, text) with chevrons between. Takes steps as a setting | `simple-steps.tsx` |
+| Showcase panel | 40px-corner gradient panel holding a white mock window | `smart-pricing.tsx`, `freebies-showcase.tsx` |
+| Three ways | Three columns of "verb what you **word**" over lilac cards | `three-ways.tsx` |
+| FAQ | Lilac rounded rows that open with a purple "+" | `purple-faq.tsx` |
+| Footer | White card with 40px top corners on the purple gradient | `purple-footer.tsx` |
 
-### Buttons
-| Variant | Style |
+### To build (app pages, Phase 2 onward)
+
+Use these rules when the Build Plan reaches each step:
+
+| Component | How it should look |
 |---|---|
-| Primary | Black background, white text, `rounded-full`, `h-10 px-5`, 14px medium. Hover: `#262626`. |
-| Secondary | White background, 1px `border`, black text, same shape. Hover: `surface-muted`. |
-| Large CTA | Primary, but `h-14 px-8`, 18px text. |
-| Small | `h-8 px-4`, 13px. Used on cards ("Pass" as secondary, "Claim" as primary). |
-
-Under the main CTA, add a caption in `subtle-foreground`, for example "Kenyon email only. Free, always."
-
-### Badge above the hero
-A white pill with a 1px border, 14px text: "Only for @kenyon.edu". It's the same idea as their "Backed by Y Combinator" badge.
-
-### Filter bar
-- Search bar: full width, `surface` with a 1px border, `rounded-xl`, a search icon inside on the left, and the search terms shown as removable gray chips.
-- Filter chips below it in one row: plain text with a small chevron (Category, Condition, Price, Dorm, Ends soon).
-- An active filter becomes a `brand-dark` pill with white text and an "x".
-- "Clear" link on the far right.
-
-### Item card (the signature component)
-This replaces their job card. Grid of 4 columns on desktop, 2 on tablet, 1 on mobile, 20px gap.
-
-```
-┌──────────────────────────────────┐  ← pastel background, rounded-2xl
-│ Old Kenyon            ( 45% )    │  ← location + ring showing % of original price
-│ 2 days left           (  off  )  │
-│                                  │
-│ IKEA desk lamp                   │  ← 22px regular, foreground
-│ [Like new] [Lighting]            │  ← small gray pill tags
-│                                  │
-│ $12  → $8 on Sep 24              │  ← current price and next drop
-│ ─────────────────────────────────│
-│  ◻ Save         │   ▤ Details    │  ← split footer, same pastel
-├──────────────────────────────────┤
-│ (photo) @handle      Pass  Claim │  ← white strip: small round photo thumb,
-└──────────────────────────────────┘     seller handle, two small pill buttons
-```
-
-- The top area is pastel (`card-*`). The bottom strip is white with a 1px top border.
-- **The ring:** a 44px circle with a thin black progress stroke on a light track, and the number in the middle. Use it for "price drop so far" or "time left". It's their "80% match" ring, reused.
-- Hover: lift 2px and show the soft shadow.
-- In the Freebies tab, every card uses `card-green` and shows a "Free" tag in `tag-purple`.
-
-### "Add your own" card
-The first card in the "My listings" grid. `card-green` background, a big 36px title "List an item", a small caption "Snap a photo, we fill in the rest", and a round white "+" button with a green icon in the top right.
-
-### Detail side panel
-Clicking a card opens a panel that slides in from the right (shadcn `Sheet`), 420px wide, white, with the page behind it dimmed slightly.
-- Top: title in 24px regular, seller and dorm underneath in `subtle-foreground`, and a close "x".
-- Middle: photo carousel, then the price history as a small line chart (Recharts, black line, no gridlines), then the description.
-- Bottom, sticky: "View seller" text link on the left, then a save icon and a black "Claim" pill on the right.
-
-### Stepper ("How it works")
-A row of 4 outlined pills joined by thin `accent-line` lines: `01 Snap`, `02 Price`, `03 Drop`, `04 Free`. The current step is filled black with white text. The step numbers sit in the pill in a smaller gray font.
-
-### Feature panels
-Two side-by-side cards under the stepper:
-- Left, wide: a **black** panel (`inverse`), with an eyebrow `01 · THE PRICE CURVE`, a 28px white title, and a dark inner box (`inverse-muted`) showing a mini dashboard (for example Listed 47 / Viewed 23 / Claimed 8 / Free 4).
-- Right, narrow: a **white** panel with a 1px border, an eyebrow, a title, and an inset `surface-muted` box holding small white rows (for example "Mini fridge · drops to $15 tomorrow").
-
-### Table (My listings)
-- Filter tabs above it as small pills with counts: All 13, Active 10, Claimed 2, Free 1, Expired 0. The active one is black.
-- Table header in 12px uppercase `subtle-foreground`. Rows 64px tall, only a thin divider between rows.
-- Status shown as a dot plus text inside a light pill: green for Sold, black for Active, purple for Free, gray for Expired.
-
-### Loading state
-Skeleton cards the same shape as the real cards: very light gray blocks (`#F2F2F2`) with a slow shimmer. No spinners.
-
-### Floating help button
-Black circle, 48px, bottom right, with a chat icon. Optional. Could open an FAQ.
-
-### Footer
-Logo and a one-line tagline on the left ("A move-out market for Kenyon students."). Then 3 or 4 link columns with 15px medium headings and `muted-foreground` links. A thin divider, then "© 2026" on the left and a contact email on the right.
+| App navbar | Same floating pill as the landing navbar. Tabs: Browse, Freebies, Sell, My listings, Saved, Messages. The active tab gets a lilac pill behind it. Right side: bell with a small plum dot, then a round avatar |
+| Login card | Centered white card, 28px corners, card shadow, logo, "Sign in with your *Kenyon account*", one full-width purple "Continue with Google" pill |
+| Item card | White card, 24px corners, card shadow. Top: icon/photo area in a lilac tint, % off ring in the top right. Bottom: title (Poppins 500), dorm and time left (gray), price in Poppins 600 with the old price struck through in `ink-faint`, and small "Pass" (gray pill) and "Claim" (purple pill) buttons. Free items: price reads "Free" in plum plus a `tag-purple` "Free" tag. Categories are told apart by a small icon, not by color |
+| Price ring | 44px ring, plum stroke on a faint plum track, "-45%" or "Free" in the middle in plum |
+| Filter bar | Prompt-bar style search pill across the top. Filter chips below as white pills with a thin ring; an active chip is a plum pill with white text and an "x" |
+| Detail side panel | White sheet from the right, 28px left corners, photo carousel with 20px corners, price chart as a plum step line with a soft plum fill, sticky bottom bar with a purple "Claim" pill |
+| Sell flow | Centered white card on the hero glow. Photo drop zone: lilac, dashed `lilac-strong` border, 28px corners, camera icon. AI-filled fields show a small plum sparkle and a `tag-purple` "AI filled" chip |
+| Curve picker | 3 lilac cards with a tiny curve drawing; the selected one flips to deep purple with white text (same rule as the door panels) |
+| Tables and tabs | Tabs as pills; the active one is plum. Table rows sit in `mist` with 12px corners and no hard borders. Status pills: Active (lilac, plum text), Sold (plum, white), Free (`tag-purple`), Expired (gray) |
+| Notifications | White rows with a plum dot for unread |
+| Empty states | Big lilac circle with a plum icon, one line of text, one purple pill button |
+| Loading | Skeleton blocks in `#F1EDF8` with a slow shimmer |
+| Toasts | White pill, card shadow, plum icon |
 
 ---
 
-## 6. Page map for your app
+## 6. Layout
 
-| Page | What it uses |
-|---|---|
-| Landing | Hero (badge, big headline, subtitle, black + outlined CTAs), a screenshot of the feed in a bordered frame, stepper, feature panels, final CTA, footer |
-| Browse | App navbar, filter bar, item card grid, detail side panel |
-| Freebies | Same as Browse, but all cards green with "Free" tags |
-| Sell (photo to listing) | Centered white card, max 640px. A drag-and-drop zone with a dashed border and `rounded-2xl`, then a pre-filled form in the same style. Put a small purple "AI filled" tag next to fields the model wrote. |
-| My listings | "List an item" card, then the status tabs and table |
-| Notifications | Right-side panel list. Each row: icon, one line of text, time. Unread rows have a small dot. |
+- Page width: max 1200px, 16px side padding on phones, 24px on larger screens.
+- Section spacing: 96 to 128px on landing pages, 24 to 32px inside the app.
+- Heroes pull up under the floating navbar (`-mt-24`, then 144 to 176px top padding) so the glow runs behind it.
+- Everything stacks to one column below 1024px. Door panels stack on phones.
 
 ---
 
-## 7. Tailwind setup to paste
+## 7. Tailwind tokens (already in `globals.css`)
 
-```ts
-// tailwind.config.ts (theme.extend)
-colors: {
-  background: "#FDFBFC",
-  surface: "#FFFFFF",
-  "surface-muted": "#F5F1EE",
-  border: "#E8E4E1",
-  foreground: "#0A0A0A",
-  "muted-foreground": "#56545A",
-  "subtle-foreground": "#8A8790",
-  inverse: "#000000",
-  "inverse-muted": "#131313",
-  "brand-dark": "#1B2F26",
-  success: "#117D49",
-  "accent-line": "#D2574B",
-  "tag-purple": "#DEAEFF",
-  card: {
-    yellow: "#FEF4C1",
-    blue: "#DFF2FF",
-    purple: "#E9E3FF",
-    green: "#CFFFE3",
-    peach: "#FBEAD0",
-    sky: "#E3F1FB",
-    rose: "#FDE2E2",
-  },
-},
-fontFamily: { sans: ["var(--font-inter)", "system-ui", "sans-serif"] },
-borderRadius: { xl: "12px", "2xl": "16px" },
+```css
+@theme {
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --color-plum: #6d28d9;
+  --color-plum-hover: #5b21b6;
+  --color-plum-soft: #8b5cf6;
+  --color-lilac: #f4eeff;
+  --color-lilac-strong: #e7dcff;
+  --color-mist: #faf8ff;
+  --color-ink: #16121f;
+  --color-ink-muted: #6e6780;
+  --color-ink-faint: #a29bb3;
+}
 ```
 
-For shadcn/ui, set `--radius: 0.75rem` and map `--primary` to black, `--primary-foreground` to white, `--background` to `#FDFBFC`, `--border` to `#E8E4E1`. Then change the default `Button` variant to `rounded-full`.
+The door hover rules are the `.door` block at the bottom of `globals.css`.
 
 ---
 
 ## 8. Do and don't
 
 **Do**
-- Leave lots of white space. When a section feels empty, it's usually right.
-- Keep headlines short and plain, in two sentences if needed: "List it in a minute. Watch it sell itself."
-- Use one pastel per card and keep the text on it black.
+
+- Keep lots of white, and one italic serif phrase per headline.
+- Keep purple for things you can click.
+- Use light at rest and dark on interaction for big choices.
 
 **Don't**
-- Use bold headlines, gradients or colorful buttons.
-- Put a shadow on everything.
-- Use more than one accent color on a single component.
-- Copy the reference site's logo, name, wording or company logos.
+
+- Use real-looking photos of people or invented testimonials. There are no real users yet.
+- Stack purple on purple, or use more than one gradient in a section.
+- Use hard gray shadows, or black buttons (black was the old theme).

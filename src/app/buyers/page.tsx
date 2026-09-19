@@ -12,7 +12,7 @@ export const metadata = {
   description: "Cheap and free stuff from Kenyon students moving out.",
 };
 
-// Buyer landing page (purple theme, docs/theme-spec-purple.md).
+// Buyer landing page (purple theme, docs/theme-spec.md).
 export default function BuyersPage() {
   return (
     <div className="bg-white text-ink">

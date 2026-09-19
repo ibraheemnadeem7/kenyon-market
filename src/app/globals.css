@@ -4,7 +4,7 @@
 /* Pinned scroll story only on screens wide AND tall enough to fit it. */
 @custom-variant pin-steps (@media (min-width: 768px) and (min-height: 720px));
 
-/* Kenyon Market theme. Source of truth: docs/theme-spec.md
+/* Base tokens (classic black theme, docs/theme-spec-classic.md). Also feed shadcn/ui.
    Light mode only for v1. */
 
 :root {
@@ -104,7 +104,7 @@
 }
 
 /* ---------- Purple theme (second design, used by /purple) ----------
-   Source of truth: docs/theme-spec-purple.md */
+   Source of truth: docs/theme-spec.md */
 @theme {
   --font-display: "Poppins", system-ui, sans-serif;
   --font-serif: "Instrument Serif", Georgia, serif;
