@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Pinned scroll story only on screens wide AND tall enough to fit it. */
+@custom-variant pin-steps (@media (min-width: 768px) and (min-height: 720px));
+
 /* Kenyon Market theme. Source of truth: docs/theme-spec.md
    Light mode only for v1. */
 

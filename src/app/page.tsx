@@ -1,9 +1,8 @@
 import { Faq } from "@/components/landing/faq";
-import { FeaturePanels } from "@/components/landing/feature-panels";
 import { FinalCta } from "@/components/landing/final-cta";
 import { FramedSection } from "@/components/landing/framed-section";
 import { Hero } from "@/components/landing/hero";
-import { Stepper } from "@/components/landing/stepper";
+import { HowItWorks } from "@/components/landing/how-it-works/how-it-works";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNavbar } from "@/components/layout/site-navbar";
 
@@ -22,10 +21,7 @@ export default function Home() {
             Four steps. No haggling. Nothing in the dumpster.
           </h2>
           <div className="mt-12">
-            <Stepper />
-          </div>
-          <div className="mt-12">
-            <FeaturePanels />
+            <HowItWorks />
           </div>
         </FramedSection>
 
