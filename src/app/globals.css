@@ -102,3 +102,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ---------- Purple theme (second design, used by /purple) ----------
+   Source of truth: docs/theme-spec-purple.md */
+@theme {
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+
+  --color-plum: #6d28d9;        /* primary purple: buttons, accents */
+  --color-plum-hover: #5b21b6;
+  --color-plum-soft: #8b5cf6;   /* icons, eyebrow text */
+  --color-lilac: #f4eeff;       /* card tint */
+  --color-lilac-strong: #e7dcff;/* borders on tinted things, rings */
+  --color-mist: #faf8ff;        /* page wash */
+  --color-ink: #16121f;         /* headlines */
+  --color-ink-muted: #6e6780;   /* body text */
+  --color-ink-faint: #a29bb3;   /* the gray half of split headlines */
+}
