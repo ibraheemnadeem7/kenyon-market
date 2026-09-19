@@ -119,3 +119,49 @@
   --color-ink-muted: #6e6780;   /* body text */
   --color-ink-faint: #a29bb3;   /* the gray half of split headlines */
 }
+
+/* Home page doors: light lilac at rest, dark purple on hover, focus or click. */
+.door:hover .door-dark,
+.door:focus-visible .door-dark,
+.door:active .door-dark,
+.door[data-pressed] .door-dark {
+  opacity: 1;
+}
+.door:hover .door-title,
+.door:focus-visible .door-title,
+.door:active .door-title,
+.door[data-pressed] .door-title {
+  color: #ffffff;
+}
+.door:hover .door-body,
+.door:focus-visible .door-body,
+.door:active .door-body,
+.door[data-pressed] .door-body {
+  color: rgb(255 255 255 / 0.78);
+}
+.door:hover .door-eyebrow,
+.door:focus-visible .door-eyebrow,
+.door:active .door-eyebrow,
+.door[data-pressed] .door-eyebrow {
+  color: rgb(255 255 255 / 0.85);
+}
+.door:hover .door-cta,
+.door:focus-visible .door-cta,
+.door:active .door-cta,
+.door[data-pressed] .door-cta {
+  background: #ffffff;
+  color: var(--color-plum);
+}
+@media (hover: none) {
+  /* Phones: no hover, so only the tap turns it dark. */
+  .door:hover .door-dark { opacity: 0; }
+  .door:hover .door-title { color: var(--color-ink); }
+  .door:hover .door-body { color: var(--color-ink-muted); }
+  .door:hover .door-eyebrow { color: var(--color-plum); }
+  .door:hover .door-cta { background: var(--color-plum); color: #ffffff; }
+  .door:active .door-dark, .door[data-pressed] .door-dark { opacity: 1; }
+  .door:active .door-title, .door[data-pressed] .door-title { color: #ffffff; }
+  .door:active .door-body, .door[data-pressed] .door-body { color: rgb(255 255 255 / 0.78); }
+  .door:active .door-eyebrow, .door[data-pressed] .door-eyebrow { color: rgb(255 255 255 / 0.85); }
+  .door:active .door-cta, .door[data-pressed] .door-cta { background: #ffffff; color: var(--color-plum); }
+}
