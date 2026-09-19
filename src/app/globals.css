@@ -1,5 +1,101 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-@theme {
+/* Kenyon Market theme. Source of truth: docs/theme-spec.md
+   Light mode only for v1. */
+
+:root {
+  --radius: 0.75rem;
+
+  /* Base */
+  --background: #fdfbfc;
+  --foreground: #0a0a0a;
+  --surface: #ffffff;
+  --surface-muted: #f5f1ee;
+  --border: #e8e4e1;
+  --muted-foreground: #56545a;
+  --subtle-foreground: #8a8790;
+  --inverse: #000000;
+  --inverse-muted: #131313;
+
+  /* Accents */
+  --brand-dark: #1b2f26;
+  --success: #117d49;
+  --accent-line: #d2574b;
+  --tag-purple: #deaeff;
+
+  /* shadcn/ui variables, mapped to the theme */
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface);
+  --popover-foreground: var(--foreground);
+  --primary: #0a0a0a;
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface-muted);
+  --accent: var(--surface-muted);
+  --accent-foreground: var(--foreground);
+  --destructive: #c7362b;
+  --input: var(--border);
+  --ring: #0a0a0a;
+}
+
+@theme inline {
   --font-sans: "Inter Variable", system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-inverse: var(--inverse);
+  --color-inverse-muted: var(--inverse-muted);
+  --color-brand-dark: var(--brand-dark);
+  --color-success: var(--success);
+  --color-accent-line: var(--accent-line);
+  --color-tag-purple: var(--tag-purple);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* Item card pastels (one per category, see src/lib/categories.ts later) */
+@theme {
+  --color-card-yellow: #fef4c1;
+  --color-card-blue: #dff2ff;
+  --color-card-purple: #e9e3ff;
+  --color-card-green: #cfffe3;
+  --color-card-peach: #fbead0;
+  --color-card-sky: #e3f1fb;
+  --color-card-rose: #fde2e2;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/40;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
