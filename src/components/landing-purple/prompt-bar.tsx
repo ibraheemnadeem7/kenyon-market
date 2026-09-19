@@ -1,12 +1,12 @@
 "use client";
 
-import { ArrowRight, ArrowUp, Camera } from "lucide-react";
+import { ArrowRight, ArrowUp, Camera, Search } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-const ideas = [
+export const sellIdeas = [
   "my mini fridge",
   "a desk lamp I never used",
   "my winter coat",
@@ -14,8 +14,22 @@ const ideas = [
   "textbooks from last spring",
 ];
 
+export type PromptConfig = {
+  prefix: string; // "I want to sell"
+  ideas: string[];
+  cta: string; // "Start now"
+  href: string;
+};
+
+export const sellPrompt: PromptConfig = {
+  prefix: "I want to sell",
+  ideas: sellIdeas,
+  cta: "Start now",
+  href: "/login",
+};
+
 // Types "I want to sell ..." ideas one letter at a time, like the reference.
-function useTypedIdea() {
+function useTypedIdea(ideas: string[]) {
   const [text, setText] = useState("");
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -49,15 +63,21 @@ function useTypedIdea() {
     };
     t = setTimeout(tick, 500);
     return () => clearTimeout(t);
-  }, []);
+  }, [ideas]);
   return text;
 }
 
-export function PromptBar({ compact = false }: { compact?: boolean }) {
-  const typed = useTypedIdea();
+export function PromptBar({
+  compact = false,
+  config = sellPrompt,
+}: {
+  compact?: boolean;
+  config?: PromptConfig;
+}) {
+  const typed = useTypedIdea(config.ideas);
   return (
     <Link
-      href="/login"
+      href={config.href}
       className={cn(
         "group flex w-full items-center gap-3 rounded-full bg-white p-2 pl-2 ring-1 transition-shadow",
         compact
@@ -66,10 +86,10 @@ export function PromptBar({ compact = false }: { compact?: boolean }) {
       )}
     >
       <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#f1eff5] text-ink-faint">
-        <Camera className="size-4" />
+        {config.prefix.startsWith("I want to sell") ? <Camera className="size-4" /> : <Search className="size-4" />}
       </span>
       <span className="min-w-0 flex-1 truncate text-left font-display text-[15px] text-ink-muted">
-        I want to sell {typed}
+        {config.prefix} {typed}
         <span className="ml-px inline-block w-px animate-pulse bg-ink-muted align-middle">&nbsp;</span>
       </span>
       {compact ? (
@@ -78,7 +98,7 @@ export function PromptBar({ compact = false }: { compact?: boolean }) {
         </span>
       ) : (
         <span className="flex h-11 shrink-0 items-center gap-2 rounded-full bg-plum px-5 font-display text-[15px] font-medium text-white transition-colors group-hover:bg-plum-hover">
-          Start now <ArrowRight className="size-4" />
+          {config.cta} <ArrowRight className="size-4" />
         </span>
       )}
     </Link>

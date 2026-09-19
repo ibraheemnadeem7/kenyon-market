@@ -9,8 +9,9 @@ export function FloatingNavbar() {
         <div className="flex items-center gap-8">
           <PurpleLogo />
           <nav className="hidden items-center gap-6 font-display text-[15px] text-ink md:flex">
-            <a href="#how" className="hover:text-plum">How it works</a>
-            <a href="#pricing" className="hover:text-plum">Smart pricing</a>
+            <Link href="/sellers" className="hover:text-plum">Sell</Link>
+            <Link href="/buyers" className="hover:text-plum">Buy</Link>
+            <Link href="/buyers#freebies" className="hover:text-plum">Freebies</Link>
           </nav>
         </div>
         <div className="flex items-center gap-2">

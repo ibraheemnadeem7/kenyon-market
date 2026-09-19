@@ -1,11 +1,11 @@
-const faqs = [
+export const sellFaqs: [string, string][] = [
   ["Who can use it?", "Anyone with a @kenyon.edu account. You sign in with your Kenyon Google account."],
   ["How do I get paid?", "In person, with cash or Venmo. The app tracks the listing and who claimed it."],
   ["Will it email me?", "No. Alerts stay inside the app, and you choose which ones you get."],
   ["What gets logged?", "Anonymized activity like listings, views, price drops and sales, for a Kenyon research project on how price schedules affect time to sale. Never your messages."],
 ];
 
-export function PurpleFaq() {
+export function PurpleFaq({ faqs = sellFaqs }: { faqs?: [string, string][] }) {
   return (
     <section className="mx-auto max-w-[800px] px-4 pb-24 sm:pb-32">
       <h2 className="text-center font-display text-[34px] font-semibold tracking-[-0.03em] text-ink sm:text-[44px]">

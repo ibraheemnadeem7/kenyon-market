@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PurpleLogo } from "./purple-logo";
 
 const cols = [
-  { title: "Product", links: [["How it works", "#how"], ["Smart pricing", "#pricing"], ["Get started", "/login"]] },
+  { title: "Market", links: [["Sell your stuff", "/sellers"], ["Buy stuff", "/buyers"], ["Freebies", "/buyers#freebies"], ["Get started", "/login"]] },
   { title: "Project", links: [["IPHS 484", "#"], ["What we log", "#"]] },
   { title: "Legal", links: [["Privacy", "/privacy"], ["Consent", "/consent"]] },
 ];

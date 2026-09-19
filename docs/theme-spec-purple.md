@@ -1,7 +1,7 @@
 # Theme Spec (Purple): Kenyon Market
 
 **Reference:** the layout of nas.com (screen recording `Theme/Screen Recording 2026-09-19 at 12.52.33.mov`), recolored to purple and white. Style only: none of its name, logo, wording or photos.
-**Live version:** `/purple` (the original black and off-white design stays at `/`).
+**Live version:** `/` (sell-or-buy chooser), `/sellers` and `/buyers`. The original black and off-white design is kept at `/classic`.
 **Code:** `src/components/landing-purple/`, tokens at the bottom of `src/app/globals.css`.
 
 ---
@@ -76,7 +76,13 @@ Soft, friendly and bright. White pages washed with a faint lavender glow at the 
 
 ---
 
-## 5. Page order (`/purple`)
+## 5. Pages
+
+**`/` Home:** floating navbar, "What are you here to *do today?*", two big panels side by side (left: lilac "Sell your stuff from *a single photo*" → `/sellers`; right: deep purple gradient "Buy stuff and grab *free stuff*" → `/buyers`), footer. On phones the panels stack.
+
+**`/buyers`:** hero "Furnish your room for *almost nothing*" with a search-style prompt bar ("I'm looking for...") and a grid of deal cards with % off rings; "Buying is simple" 4 steps; "Freebies" showcase; buyer FAQ; footer; sticky prompt.
+
+**`/sellers`** (order below):
 
 1. Floating navbar
 2. Hero: headline, subtitle, prompt bar, "Only for @kenyon.edu students", product fan

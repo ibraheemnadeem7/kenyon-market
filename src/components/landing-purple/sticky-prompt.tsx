@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
-import { PromptBar } from "./prompt-bar";
+import { PromptBar, sellPrompt, type PromptConfig } from "./prompt-bar";
 
 // The small prompt bar that floats at the bottom once the hero scrolls away.
-export function StickyPrompt() {
+export function StickyPrompt({ config = sellPrompt }: { config?: PromptConfig }) {
   const [show, setShow] = useState(false);
   useEffect(() => {
     const onScroll = () => {
@@ -25,7 +25,7 @@ export function StickyPrompt() {
         show ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"
       )}
     >
-      <PromptBar compact />
+      <PromptBar compact config={config} />
     </div>
   );
 }
