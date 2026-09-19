@@ -1,3 +1,9 @@
+import { Faq } from "@/components/landing/faq";
+import { FeaturePanels } from "@/components/landing/feature-panels";
+import { FinalCta } from "@/components/landing/final-cta";
+import { FramedSection } from "@/components/landing/framed-section";
+import { Hero } from "@/components/landing/hero";
+import { Stepper } from "@/components/landing/stepper";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteNavbar } from "@/components/layout/site-navbar";
 
@@ -5,8 +11,31 @@ export default function Home() {
   return (
     <>
       <SiteNavbar />
-      <main className="flex flex-1 items-center justify-center py-32">
-        <h1 className="text-4xl">Kenyon Market</h1>
+      <main className="flex-1">
+        <Hero />
+
+        <div className="mt-24" />
+
+        <FramedSection id="how-it-works">
+          <p className="text-[15px] text-muted-foreground">How it works.</p>
+          <h2 className="mt-3 max-w-3xl text-[32px] leading-[1.1] tracking-[-0.02em] sm:text-[44px]">
+            Four steps. No haggling. Nothing in the dumpster.
+          </h2>
+          <div className="mt-12">
+            <Stepper />
+          </div>
+          <div className="mt-12">
+            <FeaturePanels />
+          </div>
+        </FramedSection>
+
+        <FramedSection>
+          <Faq />
+        </FramedSection>
+
+        <FramedSection>
+          <FinalCta />
+        </FramedSection>
       </main>
       <SiteFooter />
     </>
